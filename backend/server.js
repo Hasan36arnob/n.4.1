@@ -1,11 +1,17 @@
 import express from "express";
+import cors from "cors";
 
 const app = express();
 const PORT = 5000;
 
-// This is a "Route". When you visit http://localhost:5000, it says hello.
-app.get("/", (req, res) => {
-  res.send("Server is ready and running!");
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  }),
+);
+
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "Hello from the Brain (Backend)!" });
 });
 
 app.listen(PORT, () => {
